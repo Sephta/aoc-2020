@@ -1,6 +1,6 @@
 /* Seth Tal
  * 12 / 03 / 2020
- * Day1 puzzle, Part 1: Finding the numbers from "input" that sum to 2020
+ * Day1 puzzle, Part 2: Find 3 numbers from "input" that sum to 2020. Return their product.
 */
 
 // Contains includes for this file
