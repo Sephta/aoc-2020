@@ -28,11 +28,6 @@ int main()
 {
     std::vector<std::string> inputData = grabInputData();
     inputData.push_back(""); // To account for the final passport not being following by a blank line.
-
-    // for (int i = 0; i < inputData.size(); i++)
-    // {
-    //     std::cout << inputData[i] << std::endl;
-    // }
     
     // a number tracking the curr number of valid passports
     int validPassportCount = 0;
