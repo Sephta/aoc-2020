@@ -12,9 +12,15 @@
 
 
 /* Function declarations */
+///
 // Grabs each line from "input.txt" and stores it inside of a string vector
+/// \return vector<string>
 std::vector<std::string> grabInputData();
+
+///
 // Resets any bool vector to contain only false entries
+/// \param creds A vector of bools
+/// \return none
 void resetCreds(std::vector<bool> &creds);
 
 
@@ -22,6 +28,7 @@ void resetCreds(std::vector<bool> &creds);
 enum PassportFields { byr = 0, iyr = 1, eyr = 2, hgt = 3, hcl = 4, ecl = 5, pid = 6 };
 static const char* PassportFields_toString[] = { "byr", "iyr", "eyr", "hgt", "hcl", "ecl", "pid" };
 
+static const int test[9] = { 9, 8, 7, 6, 5, 4, 3, 2, 1 };
 
 #pragma region Main
 int main()

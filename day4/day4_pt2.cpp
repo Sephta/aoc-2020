@@ -7,8 +7,8 @@
 #include <iostream>
 #include <fstream>
 #include <string>
-#include <string.h>
 #include <vector>
+#include <bits/stdc++.h>
 #pragma endregion Includes
 
 
@@ -31,6 +31,13 @@ void resetCreds(std::vector<bool> &creds);
 /// \return bool
 ///
 bool CorrectNumFields(std::vector<std::string> passport);
+
+///
+/// Checks if given passport has valid data in its entries
+/// \param passportEntries The vector of strings containing passport data
+/// \return bool
+///
+bool CorrectFieldValues(std::vector<std::string> passportEntries)
 #pragma endregion Function_Declarations
 
 
@@ -77,8 +84,7 @@ int main()
         else if (inputData[i] == "" || i == (inputData.size() - 1))
         {
             if (CorrectNumFields(currPassport))
-            {
-                
+            {   
                 std::string passport = "";
 
                 for (int j = 0; j < currPassport.size(); j++)
@@ -86,8 +92,31 @@ int main()
 
                 std::vector<std::string> tokens = std::vector<std::string>();
 
-                auto token = strtok((char*)passport.c_str(), " ");
+                std::stringstream stream(passport);
+                std::string token;
 
+                while (getline(stream, token, ' '))
+                    tokens.push_back(token);
+
+                // for (int j = 0; j < tokens.size(); j++)
+                //     std::cout << tokens[j] << std::endl;
+
+                std::map<std::string, std::string> keyVals = std::map<std::string, std::string>();
+
+                for (int j = 0; j < tokens.size(); j++)
+                {
+                    std::string key = strtok((char*)tokens[i].c_str(), ':');
+                    std::string val = strtok((char*)tokens[i].c_str(), ':');
+
+                    keyVals.insert({key, val});
+                }
+
+                // for(auto it = keyVals.cbegin(); it != keyVals.cend(); ++it)
+                // {
+                //     std::cout << elem.first << " " << elem.second.first << " " << elem.second.second << "\n";
+                // }
+
+                // if (CorrectFieldValues(tokens))
                 validPassportCount++;
             }
 
@@ -160,6 +189,29 @@ bool CorrectNumFields(std::vector<std::string> passport)
     if (count == 7)
         return true;
     
+    return false;
+}
+
+bool CorrectFieldValues(std::vector<std::string> passportEntries)
+{
+    // for (int j = 0; j < passportEntries.size(); j++)
+    // {
+    //     if (passportEntries[j].find(PassportFields_toString[byr]) != std::string::npos)
+    //         creds[byr] = true;
+    //     if (passportEntries[j].find(PassportFields_toString[iyr]) != std::string::npos)
+    //         creds[iyr] = true;
+    //     if (passportEntries[j].find(PassportFields_toString[eyr]) != std::string::npos)
+    //         creds[eyr] = true;
+    //     if (passportEntries[j].find(PassportFields_toString[hgt]) != std::string::npos)
+    //         creds[hgt] = true;
+    //     if (passportEntries[j].find(PassportFields_toString[hcl]) != std::string::npos)
+    //         creds[hcl] = true;
+    //     if (passportEntries[j].find(PassportFields_toString[ecl]) != std::string::npos)
+    //         creds[ecl] = true;
+    //     if (passportEntries[j].find(PassportFields_toString[pid]) != std::string::npos)
+    //         creds[pid] = true;
+    // }
+
     return false;
 }
 #pragma endregion Helper_funcs
